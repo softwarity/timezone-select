@@ -1,6 +1,6 @@
 {
   "name": "@softwarity/timezone-select",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Softwarity",
   "license": "MIT",
   "description": "Angular Material timezone select component with UTC offset navigation",
