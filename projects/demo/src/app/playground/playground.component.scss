@@ -1,0 +1,111 @@
+:host {
+  background: transparent;
+}
+
+.playground {
+  margin-bottom: 32px;
+}
+
+.preview-wrapper {
+  margin: 1rem 0;
+  background: var(--mat-sys-surface-container);
+  border-radius: 8px;
+  padding: 1.5rem;
+
+  .preview-area {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .timezone-field {
+    min-width: 300px;
+    flex: 1;
+    max-width: 400px;
+  }
+
+  .result-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--mat-sys-surface-container-low);
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9rem;
+
+    .label {
+      color: var(--text-muted);
+    }
+
+    code {
+      color: var(--accent-blue);
+      background: none;
+      padding: 0;
+    }
+  }
+
+  .preview-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+
+    button {
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+// Fake PrismJS interactive code block
+.fake-prism {
+  position: relative;
+
+  // HTML fragment with toggle button in top-right corner
+  &.html-fragment {
+    .color-scheme-toggle {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      padding: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ccc;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  // Inline boolean (checkbox + true/false text)
+  .inline-bool {
+    cursor: pointer;
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    .token.keyword {
+      border-bottom: 1px dashed #cc99cd;
+    }
+  }
+}

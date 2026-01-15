@@ -1,0 +1,15 @@
+@mixin theme() {
+  timezone-select {
+    .offset-nav {
+      background: var(--mat-sys-surface-container);
+    }
+
+    .nav-icon {
+      color: var(--mat-sys-on-surface);
+    }
+
+    .offset-value {
+      color: var(--mat-sys-on-surface);
+    }
+  }
+}
