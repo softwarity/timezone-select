@@ -4,27 +4,32 @@
   <!-- Installation -->
   <article class="doc-section">
     <h3>Installation</h3>
-    <pre><code><span class="token function">npm</span> install &#64;softwarity/timezone-select</code></pre>
+    <interactive-code language="shell">
+      <textarea>npm install @softwarity/timezone-select</textarea>
+    </interactive-code>
   </article>
 
   <!-- Usage -->
   <article class="doc-section">
     <h3>Usage</h3>
-    <pre><code><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> TimezoneSelectComponent <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'&#64;softwarity/timezone-select'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> MatFormFieldModule <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'&#64;angular/material/form-field'</span><span class="token punctuation">;</span>
+    <interactive-code language="typescript">
+      <textarea>
+import { TimezoneSelectComponent } from '@softwarity/timezone-select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
-<span class="token decorator">&#64;Component</span><span class="token punctuation">(&#123;</span>
-  <span class="token property">imports</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>TimezoneSelectComponent<span class="token punctuation">,</span> MatFormFieldModule<span class="token punctuation">,</span> ReactiveFormsModule<span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token property">template</span><span class="token punctuation">:</span> <span class="token template-string">`
-    <span class="token tag">&lt;mat-form-field&gt;</span>
-      <span class="token tag">&lt;mat-label&gt;</span>Timezone<span class="token tag">&lt;/mat-label&gt;</span>
-      <span class="token tag">&lt;timezone-select</span> <span class="token attr-name">[formControl]</span>=<span class="token attr-value">"control"</span> <span class="token tag">/&gt;</span>
-    <span class="token tag">&lt;/mat-form-field&gt;</span>
-  `</span>
-<span class="token punctuation">&#125;)</span>
-<span class="token keyword">export class</span> <span class="token class-name">MyComponent</span> <span class="token punctuation">&#123;</span>
-  control <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FormControl</span><span class="token punctuation">(</span><span class="token string">'Europe/Paris'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+@Component({
+  imports: [TimezoneSelectComponent, MatFormFieldModule, ReactiveFormsModule],
+  template: `
+    <mat-form-field>
+      <mat-label>Timezone</mat-label>
+      <timezone-select [formControl]="control" />
+    </mat-form-field>
+  `
+})
+export class MyComponent {
+  control = new FormControl('Europe/Paris');
+}</textarea>
+    </interactive-code>
   </article>
 
   <!-- API -->
@@ -109,16 +114,19 @@
   <article class="doc-section">
     <h3>Theming (Material 3)</h3>
     <p>The component provides a SCSS mixin to integrate with your Material 3 theme:</p>
-    <pre><code><span class="token keyword">&#64;use</span> <span class="token string">'&#64;angular/material'</span> <span class="token keyword">as</span> mat<span class="token punctuation">;</span>
-<span class="token keyword">&#64;use</span> <span class="token string">'&#64;softwarity/timezone-select/timezone-select-theme'</span> <span class="token keyword">as</span> timezone-select<span class="token punctuation">;</span>
+    <interactive-code language="scss">
+      <textarea>
+@use '@angular/material' as mat;
+@use '@softwarity/timezone-select/timezone-select-theme' as timezone-select;
 
-<span class="token selector">html</span> <span class="token punctuation">&#123;</span>
-  <span class="token keyword">&#64;include</span> mat.<span class="token function">theme</span><span class="token punctuation">((</span>
-    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token property">primary</span><span class="token punctuation">:</span> mat.<span class="token variable">$violet-palette</span><span class="token punctuation">)</span>
-  <span class="token punctuation">))</span><span class="token punctuation">;</span>
+html {
+  @include mat.theme((
+    color: (primary: mat.$violet-palette)
+  ));
 
-  <span class="token comment">// Apply timezone-select theme</span>
-  <span class="token keyword">&#64;include</span> timezone-select.<span class="token function">theme</span><span class="token punctuation">()</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+  // Apply timezone-select theme
+  @include timezone-select.theme();
+}</textarea>
+    </interactive-code>
   </article>
 </section>

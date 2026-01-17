@@ -35,6 +35,7 @@
     "@angular/material": ">=21.0.0"
   },
   "dependencies": {
+    "@softwarity/interactive-code": "^1.0.2",
     "tslib": "^2.6.2"
   },
   "devDependencies": {

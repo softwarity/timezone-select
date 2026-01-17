@@ -1,22 +1,29 @@
 <section class="playground">
   <h2>Playground</h2>
 
-  <!-- Interactive index.html fragment with color scheme toggle -->
-  <pre class="fake-prism html-fragment"><code><span class="token comment">&lt;!-- index.html --&gt;</span>
-<span class="token tag">&lt;body</span> <span class="token attr-name">class</span>=<span class="token attr-value">"{{ isDarkMode() ? 'dark-mode' : '' }}"</span><span class="token tag">&gt;</span>
-  <span class="token comment">...</span>
-<span class="token tag">&lt;/body&gt;</span></code><button class="color-scheme-toggle" (click)="toggleColorScheme()" [title]="isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">@if (isDarkMode()) {<mat-icon>light_mode</mat-icon>} @else {<mat-icon>dark_mode</mat-icon>}</button></pre>
+  <!-- Color scheme toggle with code display -->
+  <interactive-code language="html">
+    <textarea><!-- index.html -->
+<body class="${darkMode}">
+  ...
+</body></textarea>
+    <code-binding key="darkMode" type="select" options=",dark-mode" [value]="isDarkMode() ? 'dark-mode' : ''" (change)="onDarkModeChange($any($event).detail)"></code-binding>
+  </interactive-code>
 
-  <!-- Interactive HTML Code -->
-  <pre class="fake-prism html-fragment"><code><span class="token comment">&lt;!-- your-component.html --&gt;</span>
-<span class="token tag">&lt;mat-form-field</span> <span class="token attr-name">appearance</span>=<span class="token attr-value">"outline"</span><span class="token tag">&gt;</span>
-  <span class="token tag">&lt;mat-label&gt;</span>Timezone<span class="token tag">&lt;/mat-label&gt;</span>
-  <span class="token tag">&lt;timezone-select</span>
-    <span class="token attr-name">[formControl]</span>=<span class="token attr-value">"timezoneControl"</span>
-    <span class="token attr-name">[disabled]</span>=<span class="token attr-value">"</span><label class="inline-bool"><input type="checkbox" [checked]="isDisabled()" (change)="toggleDisabled()"><span class="token keyword">{{ isDisabled() }}</span></label><span class="token attr-value">"</span>
-    <span class="token attr-name">[showDetectButton]</span>=<span class="token attr-value">"</span><label class="inline-bool"><input type="checkbox" [checked]="showDetectButton()" (change)="toggleDetectButton()"><span class="token keyword">{{ showDetectButton() }}</span></label><span class="token attr-value">"</span> <span class="token tag">/&gt;</span>
-  <span class="token tag">&lt;mat-hint&gt;</span>Select your timezone<span class="token tag">&lt;/mat-hint&gt;</span>
-<span class="token tag">&lt;/mat-form-field&gt;</span></code></pre>
+  <!-- Component HTML with interactive bindings -->
+  <interactive-code language="html">
+    <textarea><!-- your-component.html -->
+<mat-form-field appearance="outline">
+  <mat-label>Timezone</mat-label>
+  <timezone-select
+    [formControl]="timezoneControl"
+    [disabled]="${disabled}"
+    [showDetectButton]="${showDetectButton}" />
+  <mat-hint>Select your timezone</mat-hint>
+</mat-form-field></textarea>
+    <code-binding key="disabled" type="boolean" [value]="isDisabled()" (change)="onDisabledChange($any($event).detail)"></code-binding>
+    <code-binding key="showDetectButton" type="boolean" [value]="showDetectButton()" (change)="showDetectButton.set($any($event).detail)"></code-binding>
+  </interactive-code>
 
   <!-- Live Preview -->
   <div class="preview-wrapper">
@@ -45,19 +52,19 @@
     </div>
   </div>
 
-  <!-- Interactive SCSS Code -->
-  <pre class="fake-prism"><code><span class="token comment">// In styles.scss</span>
-<span class="token keyword">&#64;use</span> <span class="token string">'&#64;angular/material'</span> <span class="token keyword">as</span> mat<span class="token punctuation">;</span>
-<span class="token keyword">&#64;use</span> <span class="token string">'&#64;softwarity/timezone-select/timezone-select-theme'</span> <span class="token keyword">as</span> timezone-select<span class="token punctuation">;</span>
+  <!-- Palette selector -->
+  <interactive-code language="scss">
+    <textarea>@use '@angular/material' as mat;
+@use '@softwarity/timezone-select/timezone-select-theme' as timezone-select;
 
-<span class="token selector">html</span> <span class="token punctuation">&#123;</span>
-  <span class="token keyword">&#64;include</span> mat.<span class="token function">theme</span><span class="token punctuation">((</span><span class="token property">color</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token property">primary</span><span class="token punctuation">:</span> mat.<span class="token variable">$violet-palette</span><span class="token punctuation">)</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
-  <span class="token property">color-scheme</span><span class="token punctuation">:</span> light<span class="token punctuation">;</span>
-
-  <span class="token selector">&amp; body.dark-mode</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">color-scheme</span><span class="token punctuation">:</span> dark<span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-
-  <span class="token keyword">&#64;include</span> timezone-select.<span class="token function">theme</span><span class="token punctuation">()</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+html {
+  @include mat.theme((color: mat.$${palette}-palette));
+  color-scheme: light;
+  & body.dark-mode { 
+    color-scheme: dark; 
+  }
+  @include timezone-select.theme();
+}</textarea>
+    <code-binding key="palette" type="select" options="red,green,blue,yellow,cyan,magenta,orange,chartreuse,spring-green,azure,violet,rose" [value]="selectedPalette()" (change)="selectedPalette.set($any($event).detail)"></code-binding>
+  </interactive-code>
 </section>
